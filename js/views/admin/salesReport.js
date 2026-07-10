@@ -96,7 +96,7 @@ class SalesReportView extends HTMLElement {
         return `
         <li class="${indice === 0 ? "top-row" : ""}">
             <span data-label="Código">${fila.codigo}</span>
-            <span data-label="Evento">${indice === 0 ? "🏆 " : ""}${fila.nombre}</span>
+            <span data-label="Evento">${fila.nombre}</span>
             <span data-label="Cantidad">${fila.cantidad}</span>
             <span data-label="Total">${this.formatoMoneda(fila.total)}</span>
         </li>`;
