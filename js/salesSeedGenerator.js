@@ -17,14 +17,14 @@ function fechaAleatoria(year) {
 }
 
 export function generarVentasDemo(eventos, cantidad = 90) {
-    const anioActual = new Date().getFullYear();
+    const currentYear = new Date().getFullYear();
     const ventas = [];
 
     for (let i = 0; i < cantidad; i++) {
         const evento = eventos[Math.floor(Math.random() * eventos.length)];
         const cantidadEntradas = 1 + Math.floor(Math.random() * 4);
         const subtotal = evento.precio * cantidadEntradas;
-        const year = anioActual - Math.floor(Math.random() * 2);
+        const year = currentYear - Math.floor(Math.random() * 2);
 
         ventas.push({
             id: Date.now() + i,

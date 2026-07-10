@@ -27,6 +27,11 @@ class SalesReportView extends HTMLElement {
 
     render() {
         const years = getSaleYears();
+
+        const fechaActual = new Date();
+        const añoActual = fechaActual.getFullYear();
+        const mesActual = fechaActual.getMonth() + 1;
+
         const reporte = getSaleReportByDate(this.year, this.month);
         const nombreMes = MONTHS.find((mes) => mes.value === this.month).label;
 
@@ -46,8 +51,16 @@ class SalesReportView extends HTMLElement {
             <label>
                 Mes
                 <select id="report-month">
-                    ${MONTHS.map((mes) => `<option value="${mes.value}" ${mes.value === this.month ? "selected" : ""}>${mes.label}</option>`).join("")}
-                </select>
+                ${MONTHS
+                .filter((mes) => {
+                    if (this.year > añoActual) return false;
+                    if (this.year === añoActual && mes.value > mesActual) return false;
+                    return true;
+                })
+                .map((mes) => `<option value="${mes.value}" ${mes.value === this.month ? "selected" : ""}>${mes.label}</option>`)
+                .join("")
+            }
+            </select>
             </label>
         </div>
 
